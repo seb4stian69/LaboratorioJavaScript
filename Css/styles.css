@@ -1,0 +1,316 @@
+/* Variables */
+
+:root {
+
+    --grey: #333232;
+    --grey-m: #262626;
+    --grey-s: #2D2C2C;
+    --grey-t: #00000031;
+    --grey-sHover: #272727;
+    --blue: #63AFF2;
+    --blueHover: #5794c9;
+    --red: #F26363;
+    --redHover: #c95151;
+
+}
+
+/* Contenedores & Elementos */
+
+*{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body{
+    background-color: var(--grey);
+}
+
+.form{
+    background-color: #0000003e;
+    width: 40%;
+    height: 40%;
+    margin: 15% auto;
+    padding: 1em 1em;
+    border-radius: .8em;
+    position: relative;
+}
+
+.logComponent{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url(../resource/Grupo\ 26.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.form input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5% auto;
+    width: 60%;
+    height: 2em;
+    padding: .4em;
+    padding-left: 1em;
+    border: none;
+    border-radius: .3em;
+}
+
+.btnBox{
+    display: flex;
+    justify-content: space-evenly;
+    padding-bottom: 1.5em;
+}.form input::placeholder{
+    color: var(--grey);
+}
+
+.btnBox button{
+    width: 8em;
+    height: 2.5em;
+    border: none;
+    border-radius: 10em;
+    color: white;
+}
+
+.btnSend{
+    background-color: var(--blue);
+}.btnSend:hover{
+    background-color: var(--blueHover);
+}
+
+.btnClear{
+    background-color: var(--red);
+}.btnClear:hover{
+    background-color: var(--redHover);
+}
+
+.start{
+    border: none;
+    border-radius: .6em;
+    background-color: var(--grey-m);
+    width: 20em;
+    height: 10em;
+}.start:hover{
+    background-color: var(--blue);
+}
+
+.history{
+    border: none;
+    border-radius: .6em;
+    background-color: var(--grey-m);
+    width: 20em;
+    height: 10em;
+}.history:hover{
+    background-color: var(--blue);
+}
+
+.home{
+    background: url(../resource/Grupo27.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin-top: -1em;
+    margin-left: -1em;
+}
+
+.formQuiz{
+    background: url(../resource/Grupo27.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin-top: -1em;
+    margin-left: -1em;
+}
+
+.content{
+    background-color: var(--grey-t);
+    width: 75%;
+    height: 80%;
+    border-radius: 1em;
+    display: grid;
+    grid-template-areas: 'form question'
+                         'form question' ;
+    padding: 1em;
+    padding-right: 0em;
+}
+
+.Quiz{
+    grid-area: form;
+    background-color: var(--grey-t);
+    border-radius: 1em;
+    height: 85%;
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.porcent{
+    grid-area: porcent;
+    background-color: var(--grey-t);
+    border-radius: .8em;
+    height: 40%;
+    width: 50%;
+    margin-top:-5% ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+}
+
+.question{
+    grid-area: question;
+    background-color: var(--grey-t);
+    height: 85%;
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: .8em;
+    color: white;
+}
+
+#preguntasCheck{
+    margin-top: 1em;
+}
+
+.preguntaFQ{
+    color: white;
+    background-color: var(--grey);
+    padding: 3% 25%;
+    margin-bottom: 1em;
+    border-radius: 10em;
+}
+
+.textPreguntaFQ{
+    resize: none;
+    width: 70%;
+    height: 25%;
+    padding: 1em;
+    margin-bottom: .5em;
+    background-color: var(--grey);
+    border: none;
+    color: white;
+    border-radius: .5em;
+    text-align: center;
+    
+}
+
+.cajaRespuestasFQ{
+    margin: 0 0 .5em 0;
+    color: white;    
+}
+
+.confirmBtnFQ{
+    margin-top: .5em;
+    width: 30%;
+    height: 8%;
+    background-color: var(--blue);
+    border: none;
+    border-radius: 10em;
+    color: white;
+    display: inline-block;
+}.confirmBtnFQ:hover{
+    background-color: var(--blueHover);
+}
+
+.exitBtnC{
+    margin-top: .5em;
+    width: 30%;
+    height: 8%;
+    background-color: var(--red);
+    border: none;
+    border-radius: 10em;
+    color: white;
+    display: inline-block;
+}.exitBtnC:hover{
+    background-color: var(--redHover);
+}
+
+.exitBtnD{
+    border: none;
+    border-radius: .6em;
+    background-color: var(--grey-m);
+    width: 20em;
+    height: 10em;
+}.exitBtnD:hover{
+    background-color: var(--redHover);
+}
+
+.a{
+    color: white;
+    text-decoration: none;
+}
+
+.radioBtn{
+    border: none;
+    border-radius: 10em;
+    width: 1em;
+    height: 1em;
+    color: white;
+}.radioBtn:hover{
+    background-color: #555454;
+    cursor: pointer;
+    color: #555454;
+}
+
+.historyHome{
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    
+    width: 80%;
+    height: 80%;
+    margin-top: 7em;
+}
+
+.historyFetch{
+
+    background-color: #555454;
+    padding: 1em 2em;
+    height: 20%;
+    color: white;
+    border-radius: .4em;
+    margin-bottom: 2em;
+
+}
+
+.exitH{
+
+    width: 10%;
+    margin-left: 70%;
+    margin-bottom: 38%;
+    display: inline-block;
+    position: absolute;
+
+}
+
+.start{color: white;}
+.exitBtnD{color: white;}
+.history{color: white;}
+
+button {
+    cursor: pointer;
+}
