@@ -61,14 +61,11 @@ export class Quiz {
 
     }
 
-    resetData(questions){
+    resetData(){
 
-        this.questions = questions    
         this.questionIndex = 0
         this.score = 0
         this.finish = false
-
-        console.log('Limpiar data')
 
     }
  

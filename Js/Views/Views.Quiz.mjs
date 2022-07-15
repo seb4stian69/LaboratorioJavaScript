@@ -77,10 +77,30 @@ divPorcent.innerHTML = `${0} pts`
 // Class quiz
 let _Quiz = new Quiz(quizQuestion)
 
+/* Logica del quiz */
+
+let contador = 0
+let Question = _Quiz.getQuestionIndex().question
+let Options = _Quiz.getQuestionIndex().option
+let Categoria = _Quiz.getQuestionIndex().category
+let Puntos = _Quiz.getScore()
+let Won = false
+
 /* Export part */ 
 const ViewsQuiz = (container, display) => {
 
+    _Quiz.resetData()
+
+    contador = 0
+    Question = _Quiz.getQuestionIndex().question
+    Options = _Quiz.getQuestionIndex().option
+    Categoria = _Quiz.getQuestionIndex().category
+    Puntos = _Quiz.getScore()
+    Won = false
+
     updateData()
+
+    console.log(_Quiz.getQuestionIndex().question)
 
     divCajaRespuestaFQ.append(inputOne,labelOne,br,inputTwo,labelTwo,brOne,inputThree,labelThree,brTwo,inputFour,labelFour)
     divBtnBox.append(buttonExit)
@@ -96,14 +116,7 @@ const ViewsQuiz = (container, display) => {
 
 }
 
-/* Logica del quiz */
-
-let contador = 0
-let Question = _Quiz.getQuestionIndex().question
-let Options = _Quiz.getQuestionIndex().option
-let Categoria = _Quiz.getQuestionIndex().category
-let Puntos = _Quiz.getScore()
-let Won = false
+// Funcionalidad del sistema
 
 let vrft
 
@@ -114,12 +127,10 @@ const confirmaR = (res) =>{
   if( vrft ){
 
     alert('Respuesta correcta')
-    console.log(res)
     updateForm()
     
   }else{
 
-    console.log(res)
     alert('Respuesta incorrecta seras enviado a la pagina inicial y podras ver tu historico en la parte de historial')
     updateForm()
 
@@ -137,7 +148,7 @@ const updateForm =()=>{
 
     if(_Quiz.isFinish()){
 
-        console.log('en true')
+      console.log('en true')
 
       Puntos = _Quiz.getScore()
       Won = true
