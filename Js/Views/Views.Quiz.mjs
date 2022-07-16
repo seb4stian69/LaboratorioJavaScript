@@ -117,9 +117,14 @@ const ViewsQuiz = (container, display) => {
 
 }
 
-// Funcionalidad del sistema
+/* Funciones y validaciones */
 
 let vrft
+
+/**
+ * @param {String} res
+ * @Description confirmarR es una funcion que se utiliza para validar la respuesta enviada por el usuario, recibe un paramentro res el cual se le pasa al metodo confirm de la clase  Quiz, con la finalidad de que nos devuelva un booleano en dado caso sea correcta la respuesta
+ */
 
 const confirmaR = (res) =>{  
 
@@ -154,6 +159,11 @@ const confirmaR = (res) =>{
   }
 
 }
+
+/**
+ * @param {boolean} bool 
+ * @Description updateForm es una funcion que nos permite realizar todo el proceso de actualizacion interna del quiz, aqui recibimos bool como parametro para añadirselo al if el cual tendremos dentro de esta funcion para validar si el jugador ya termino su partida o sigue con otra pregunta, la actualizacion interna consiste en cambiar el valor de las variables del quiz para luego por medio del updateData renderizarlas
+ */
 
 const updateForm =(bool)=>{
 
@@ -208,6 +218,10 @@ const updateForm =(bool)=>{
     
 }
 
+/**
+ * @Description updateData es una funcion que nos sirve para actualizar los valores visualmente del formulario, esto quiere decir que cuando la funcion de updateForm haya finalizado sus cambios internos, enseguida se llamara a updateData para que realize los externos y visuales con los que el usuario interactua
+ */
+
 const updateData = () => {
 
     divPFQ.innerHTML = `Categoria: ${Categoria}`
@@ -227,6 +241,12 @@ const updateData = () => {
 
 }
 
+/**
+ * 
+ * @param {JSON} user
+ * @Description saveData es una funcion que se utiliza para guardar un nuevo objetoJson dentro del localStorage, esta recibe el objeto que guardara y procesa la informacion para luego ser enviada de nuevo dentro de la misma clave utilizada 
+ */
+
 const saveData = (user) => {
 
     let data = JSON.parse(localStorage.getItem("universalSession"))
@@ -237,8 +257,9 @@ const saveData = (user) => {
 
 }
 
-/* Acciones por boton */
+/* Acciones por boton */ 
 
+// Se utiliza para que el usuario salga voluntariamente del cuestionario
 buttonExit.addEventListener ('click', ()=>{
 
     divFormQuiz.style.display = 'none'
@@ -246,24 +267,28 @@ buttonExit.addEventListener ('click', ()=>{
 
 })
 
+// Se utiliza para enviar el valor de la respuesta A, a la funcion confirmR para ser validado
 inputOne.addEventListener('click', ()=>{
 
     confirmaR(Options[0])
 
 })
 
+// Se utiliza para enviar el valor de la respuesta B, a la funcion confirmR para ser validado
 inputTwo.addEventListener('click', ()=>{
 
     confirmaR(Options[1])
 
 })
 
+// Se utiliza para enviar el valor de la respuesta C, a la funcion confirmR para ser validado
 inputThree.addEventListener('click', ()=>{
 
     confirmaR(Options[2])
 
 })
 
+// Se utiliza para enviar el valor de la respuesta D, a la funcion confirmR para ser validado
 inputFour.addEventListener('click', ()=>{
 
     confirmaR(Options[3])

@@ -1,7 +1,5 @@
 import { Question } from "./Class-Question.mjs"
 
-let category = 1
-
 export class Quiz {
 
     /**
@@ -41,30 +39,45 @@ export class Quiz {
         this.categoria = values
     }
     
+    /**
+     * @description getQuestionIndex() metodo utilizado para retornar una pregunta aleatoria dependiendo de la categoria, esta categoria se actualiza con su setter desde el archivo Views.Quiz.mjs
+     * @returns {questionRan} pregunta aleatoria
+     */
 
-    // Metodos accesores    
     getQuestionIndex(){
 
         let cat = this.categoria
 
-        let f = this.questions.filter( function (preguntita) {
+        let filter = this.questions.filter( function (question) {
             
-            return preguntita.category == cat;
+            return question.category == cat;
 
         });
 
-        let ran = Math.floor(Math.random() * f.length);
-        let valorran = f[ran];
+        let random = Math.floor(Math.random() * filter.length);
+        let questionRan = filter[random];
         
-        return valorran
+        return questionRan
 
     }
     
+    /**
+     * 
+     * @param {Question[]} question es un valor de tipo question que nos sirve para validar si la pregunta que se pasa como parametro se encuentra en la categoria final (5) en ese caso retornara verdadero, lo cual significa que ha finalizado el juego
+     * @returns {boolean} retorna verdadero en dado caso de que se encuentra en la cateogoria 5 el usuario
+     */
+
     isFinish = (question) => {
 
         return question.category === 5
 
     }
+
+    /**
+     * @param {Question[]} question 
+     * @param {String} answer 
+     * @returns {boolean} dependiendo si la respuesta que el usuario ha enviado es igual a la variable answer que representa la respuesta correcta dentro de la clase question
+     */
 
     confirm(question,answer){
 
@@ -85,6 +98,10 @@ export class Quiz {
         return true
 
     }
+
+    /**
+     * @Description esta funcion sirve para resetear todos los datos de la clase, y devuelve el objeto con los valores por defecto que controlan el quiz en el sistema
+     */
 
     resetData(){
 

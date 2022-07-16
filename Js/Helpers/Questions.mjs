@@ -1,3 +1,8 @@
+
+/**
+ * @Description Arreglo de todas las preguntas que se utilizaran dentro del quiz
+ */
+
 export const dataQuestions = [
 
     {
