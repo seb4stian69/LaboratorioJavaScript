@@ -10,6 +10,10 @@ export class Question {
 
     }
 
+    getCategory = () =>{
+        return this.category
+    }
+
     isCorrectAnswer = (response) => response === this.answer;
 
 }

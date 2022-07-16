@@ -12,6 +12,19 @@ const buttonThreeHome = document.createElement('button')
 
 const ViewsHome = (container,display) => {
 
+    if(localStorage.length == 0){
+        
+        let defaultGanador = [
+            {
+                name: 'Ganador',
+                score: 25
+            }
+        ]
+    
+        localStorage.setItem("universalSession", JSON.stringify(defaultGanador))
+
+    }
+
     divHome.classList.add('home')
 
     buttonOneHome.classList.add('start')

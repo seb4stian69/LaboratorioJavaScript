@@ -35,8 +35,22 @@ const ViewsLoguin = (container,display) => {
 
 buttonOne.addEventListener('click', ()=> {
 
-    form.style.display = 'none'
-    ViewsHome(Container,'flex')
+    if( ( (input.value).trim() ).length == 0 ){
+
+        input.value = ''
+        input.focus()
+        alert('Debes proporcionar un nombre para el ingreso')
+        
+    }else{
+
+        form.style.display = 'none'
+        sessionStorage.setItem('user', input.value)
+        input.value = ''
+        ViewsHome(Container,'flex')
+
+    }
+
+    
 
 })
 

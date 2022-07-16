@@ -72,35 +72,36 @@ divQuestion.classList.add('question')
 
 const divPorcent = document.createElement('div')
 divPorcent.classList.add('porcent')
-divPorcent.innerHTML = `${0} pts`   
 
 // Class quiz
 let _Quiz = new Quiz(quizQuestion)
 
 /* Logica del quiz */
 
-let contador = 0
-let Question = _Quiz.getQuestionIndex().question
-let Options = _Quiz.getQuestionIndex().option
-let Categoria = _Quiz.getQuestionIndex().category
-let Puntos = _Quiz.getScore()
-let Won = false
+let contador = 1
+let que
+let Question
+let Options
+let Categoria
+let Puntos
+let Won
 
 /* Export part */ 
 const ViewsQuiz = (container, display) => {
 
     _Quiz.resetData()
 
-    contador = 0
-    Question = _Quiz.getQuestionIndex().question
-    Options = _Quiz.getQuestionIndex().option
-    Categoria = _Quiz.getQuestionIndex().category
+    contador = 1
+
+    _Quiz.setCategoria(contador)
+    que = _Quiz.getQuestionIndex(contador)
+    Question = que.question
+    Options = que.option
+    Categoria = que.category
     Puntos = _Quiz.getScore()
     Won = false
 
     updateData()
-
-    console.log(_Quiz.getQuestionIndex().question)
 
     divCajaRespuestaFQ.append(inputOne,labelOne,br,inputTwo,labelTwo,brOne,inputThree,labelThree,brTwo,inputFour,labelFour)
     divBtnBox.append(buttonExit)
@@ -122,57 +123,83 @@ let vrft
 
 const confirmaR = (res) =>{  
 
-  vrft = _Quiz.confirm(res)
+  vrft = _Quiz.confirm(que,res)
 
   if( vrft ){
 
     alert('Respuesta correcta')
-    updateForm()
     
+    if (Categoria == 5){
+        updateForm(true)
+    } else {
+        updateForm(false)
+    }
+
   }else{
 
     alert('Respuesta incorrecta seras enviado a la pagina inicial y podras ver tu historico en la parte de historial')
-    updateForm()
 
+    updateForm(false)
+
+    let user = {
+        name: sessionStorage.getItem('user'),
+        score: Puntos
+    }
+
+    saveData(user)
+    
     divFormQuiz.style.display = 'none'
     ViewsHome(Container, 'flex')
-
-    // const _user = new user(Username, Puntos, false)
-    // createHist(_user) -> Cambiar metodo a jsMethod
 
   }
 
 }
 
-const updateForm =()=>{
+const updateForm =(bool)=>{
 
-    if(_Quiz.isFinish()){
+    if(_Quiz.isFinish(que) && bool){
 
-      console.log('en true')
+        contador = 1
 
       Puntos = _Quiz.getScore()
-      Won = true
       
-      // const _user = new user(Username, 25, true) -> Cambiar metodo a jsMethod
-      // setUser( _user ) -> Cambiar metodo a jsMethod
-      // createHist(_user) -> Cambiar metodo a jsMethod
+      let user = {
+        name: sessionStorage.getItem('user'),
+        score: Puntos
+      }
 
-      alert('Terminaste la prueba ... ¡Has ganado! ... \Puedes revisar el historial tuyo y de otros en el apartado [Ir al historial] en la pagina principal')
+      saveData(user)
+
+      alert('Terminaste la prueba, Ganaste! \nPuedes revisar el historial tuyo y de otros en el apartado [Ir al historial] en la pagina principal')
       
       divFormQuiz.style.display = 'none'
+
       ViewsHome(Container, 'flex')
       updateData()
 
     }else{
 
-        console.log('en false')
+        Puntos = _Quiz.getScore()
+
+        let user = {
+            name: sessionStorage.getItem('user'),
+            score: Puntos
+        }
+
+        if(Categoria == 5){
+            saveData(user)
+            ViewsHome(Container, 'flex')
+            divFormQuiz.style.display = 'none'
+            updateData()
+        }
 
         contador++
 
-        Question = _Quiz.getQuestionIndex().question
-        Options = _Quiz.getQuestionIndex().option
-        Categoria = _Quiz.getQuestionIndex().category
-        Puntos = _Quiz.getScore()
+        _Quiz.setCategoria(contador)
+        que = _Quiz.getQuestionIndex(contador)
+        Question = que.question
+        Options = que.option
+        Categoria = que.category
 
         updateData()
         _Quiz.setQuestionIndex(contador)
@@ -196,6 +223,18 @@ const updateData = () => {
     inputFour.value = Options[3]
     labelFour.innerHTML = `     ${Options[3]}`
 
+    divPorcent.innerHTML = `${Puntos} pts`   
+
+}
+
+const saveData = (user) => {
+
+    let data = JSON.parse(localStorage.getItem("universalSession"))
+
+    data.push(user)
+    
+    localStorage.setItem('universalSession',JSON.stringify(data))
+
 }
 
 /* Acciones por boton */
@@ -209,28 +248,24 @@ buttonExit.addEventListener ('click', ()=>{
 
 inputOne.addEventListener('click', ()=>{
 
-    console.log(inputOne.value)
     confirmaR(Options[0])
 
 })
 
 inputTwo.addEventListener('click', ()=>{
 
-    console.log(inputTwo.value)
     confirmaR(Options[1])
 
 })
 
 inputThree.addEventListener('click', ()=>{
 
-    console.log(inputThree.value)
     confirmaR(Options[2])
 
 })
 
 inputFour.addEventListener('click', ()=>{
 
-    console.log(inputFour.value)
     confirmaR(Options[3])
 
 })

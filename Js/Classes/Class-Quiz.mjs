@@ -1,3 +1,6 @@
+import { Question } from "./Class-Question.mjs"
+
+let category = 1
 
 export class Quiz {
 
@@ -12,6 +15,7 @@ export class Quiz {
         this.questionIndex = 0
         this.score = 0
         this.finish = false
+        this.categoria = 0
     }
     
     // Getters & Setters
@@ -33,17 +37,38 @@ export class Quiz {
     getScore(){
         return this.score
     }
+    setCategoria(values){
+        this.categoria = values
+    }
+    
 
     // Metodos accesores    
     getQuestionIndex(){
-        return ( this.questions[this.questionIndex] )
+
+        let cat = this.categoria
+
+        let f = this.questions.filter( function (preguntita) {
+            
+            return preguntita.category == cat;
+
+        });
+
+        let ran = Math.floor(Math.random() * f.length);
+        let valorran = f[ran];
+        
+        return valorran
+
     }
     
-    isFinish = () => this.questions.length === this.questionIndex
+    isFinish = (question) => {
 
-    confirm(answer){
+        return question.category === 5
 
-        if(this.getQuestionIndex().isCorrectAnswer(answer)){
+    }
+
+    confirm(question,answer){
+
+        if(question.isCorrectAnswer(answer)){
             
             this.score+=1            
             
